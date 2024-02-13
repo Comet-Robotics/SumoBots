@@ -1,4 +1,3 @@
-//CN8 Pins
 #define OS1  PB7  //Opponent sensor 1               CN9 1
 #define OS2  PB6  //Opponent sensor 2               CN9 2
 #define LS1  PA10 //Pin number for line sensor 1     CN9 3
