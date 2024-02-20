@@ -1,3 +1,4 @@
+
 #define OS1  PB7  //Opponent sensor 1               CN9 1
 #define OS2  PB6  //Opponent sensor 2               CN9 2
 #define LS1  PA10 //Pin number for line sensor 1     CN9 3
@@ -26,9 +27,15 @@ void setup() {
 void lineHit()
 {
   Stop();
-  delayMicroseconds(50000);
+  for(int i=0;i<30;i++)
+  {
+    delayMicroseconds(15000);
+  }
   DRIVE(-255);
-  delayMicroseconds(500000);
+  for(int i=0;i<300;i++)
+  {
+    delayMicroseconds(15000);
+  }
 }
 
 void loop() {
