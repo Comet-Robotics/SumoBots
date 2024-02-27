@@ -16,26 +16,8 @@ void setup() {
   pinMode(LS1, INPUT);
   pinMode(LS2, INPUT);
 
-  attachInterrupt(digitalPinToInterrupt(LS1), lineHit,RISING);
-  attachInterrupt(digitalPinToInterrupt(LS2), lineHit,RISING);
-
   Serial.begin(9600);
   delay(5000);  //Wait for 5 seconds
-}
-
-//Interrupt when detect line
-void lineHit()
-{
-  Stop();
-  for(int i=0;i<30;i++)
-  {
-    delayMicroseconds(15000);
-  }
-  DRIVE(-255);
-  for(int i=0;i<300;i++)
-  {
-    delayMicroseconds(15000);
-  }
 }
 
 void loop() {
@@ -44,6 +26,11 @@ void loop() {
   op1 = digitalRead(OS1);
   op2 = digitalRead(OS2);
 
+  //Check first if line is hit
+  if(ln1==1 || ln2==1)
+  {
+    lineHit();
+  }
   while (op1 && op2)  //Go forwards while opponent seen in both sensors.
   {
     DRIVE(255);
@@ -74,9 +61,8 @@ void loop() {
     delay(10);
   }
 
-  if (!op1 && !op2)  //Turn and move forward slightly if the opponent is not seen
-  {
-    DRIVE(125, 25);
+  if (!op1 && !op2)  //Turn around to look for the opponent.
+    DRIVE(125, -125);
     delay(250);
   }
 }
@@ -93,4 +79,15 @@ void DRIVE(int speed1, int speed2) {
 
 void Stop() {
   DRIVE(0, 0);
+}
+
+//Stop, reverse, and turn around when at the edge of the ring
+void lineHit()
+{
+  Stop();
+  delay(50);
+  DRIVE(-255);
+  delay(400);
+  DRIVE(150,-150)
+  delay(100);
 }
