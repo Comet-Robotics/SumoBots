@@ -19,11 +19,10 @@ int op2;            //Reading from right opponent sensor
 int ln1;            //Reading from line sensor
 int ln2;            //Reading from line sensor 2
 
-Servo LeftMotor; 
-Servo RightMotor; 
+Servo M1_Throttle; 
+Servo M2_Steering; 
 
 void lineHit(); 
-void DRIVE(int speed);
 void DRIVE(int speed1, int speed2); 
 void Stop(); 
 void setMotors();
@@ -53,27 +52,30 @@ void loop() {
   Serial.print("OP2: "); 
   Serial.println(op2);
   */
+
   
   if (op1 && op2)  //Go forwards while opponent seen in both sensors.
   {
-    DRIVE(1750);
+    
+    DRIVE(1500,1600);
   }
-
-  else if (op1 && !op2)  //Go forwards and slightly right while opponent seen by left sensor
+  else if (!op1 && op2)  //Go forwards and slightly right while opponent seen by left sensor
   {
-    DRIVE(1750,1950);
+    DRIVE(1600,1500);
   }
-
-  else if (!op1 && op2)  //Go forwards and slightly left while opponent seen by right sensor
+  else if (op1 && !op2)  //Go forwards and slightly left while opponent seen by right sensor
   {
-    DRIVE(1950,1750);
+    DRIVE(1400,1500);
   }
-
   else //Turn and move forward slightly if the opponent is not seen
   {
-    DRIVE(1750, 1950);
+    DRIVE(1350,1500);
+    delay(500);
+    Stop();
     delay(200);
   }
+  
+  
 }
 
 //Interrupt when detect line
@@ -84,7 +86,7 @@ void lineHit()
   {
     delayMicroseconds(15000);
   }
-  DRIVE(-255);
+  DRIVE(1000,1000);
   for(int i=0;i<300;i++)
   {
     delayMicroseconds(15000);
@@ -92,17 +94,9 @@ void lineHit()
 }
 
 
-void DRIVE(int speed) {
-  LeftMotor.writeMicroseconds(speed); 
-  RightMotor.writeMicroseconds(speed);
-  //delay(200);
-}
-
-
 void DRIVE(int speed1, int speed2) {
-  LeftMotor.writeMicroseconds(speed1);
-  RightMotor.writeMicroseconds(speed2);
-  //delay(200);
+  M1_Throttle.writeMicroseconds(speed1);
+  M2_Steering.writeMicroseconds(speed2);
 }
 
 
@@ -113,8 +107,8 @@ void Stop() {
 void setMotors() { 
   pinMode(M1, OUTPUT);
   pinMode(M2, OUTPUT);
-  LeftMotor.attach(M2, 1000, 2000); 
-  RightMotor.attach(M1, 1000, 2000);
+  M2_Steering.attach(M2, 1000, 2000); 
+  M1_Throttle.attach(M1, 1000, 2000);
 
 }
 
@@ -131,8 +125,8 @@ void armESC() {
   
   delay(10);
   for (int i = 60; i < 80; i++) { 
-    LeftMotor.write(i);
-    RightMotor.write(i);
+    M2_Steering.write(i);
+    M1_Throttle.write(i);
     Serial.println(i);
     delay(500); 
   }

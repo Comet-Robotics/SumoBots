@@ -1,16 +1,16 @@
 #include <Servo.h>
 #define M1 PB5
 #define M2 PB4
-Servo LeftMotor;
-Servo RightMotor; 
+Servo M2_Throttle;
+Servo M1_Steering; 
 
 
 void setup ()
 {
   pinMode(M1, OUTPUT);
   pinMode(M2, OUTPUT);
-  LeftMotor.attach(M2, 1000, 2000); 
-  RightMotor.attach(M1, 1000, 2000); 
+  M2_Throttle.attach(M2, 1000, 2000); 
+  M1_Steering.attach(M1, 1000, 2000); 
   Serial.begin(9600);
   int i = 0;
   delay(10);
@@ -29,8 +29,8 @@ void setup ()
 
   for(i = 60; i < 80; i++)
   {
-     LeftMotor.write(i);
-     RightMotor.write(i);
+     M1_Steering.write(i);
+     M2_Throttle.write(i);
      Serial.println(i);
      delay(500);
   } 
@@ -38,31 +38,35 @@ void setup ()
 }
 
 void DRIVE(int speed) {
-  LeftMotor.writeMicroseconds(speed);
-  //delay(2000);
-  RightMotor.writeMicroseconds(speed);
-  //delay(2000);
+  //M2_Throttle.writeMicroseconds(speed);
+  M1_Steering.writeMicroseconds(speed);
+
 }
 
 void loop() { 
   
   // Drive both motors backwards
+
+  /*
   for(int i = 1500; i > 1000; i--) { 
-    RightMotor.write(i);  
-    delay(10);
+    M1_Steering.write(i);  
   }
+  */
+
+  //M1_Steering.write(1000); 
+  M2_Throttle.write(1000);
 
   // Waiting 2 seconds
-  DRIVE(1500);
   delay(2000); 
-
+  /*
   for (int i = 1500; i < 2000; i++) { 
-    RightMotor.write(i); 
-    delay(10);
+    M1_Steering.write(i); 
   }
+  */
+
+  //M1_Steering.write(1800);
   
   // Waiting 5 seconds 
-  DRIVE(1500);
   delay(5000);
   
 }
