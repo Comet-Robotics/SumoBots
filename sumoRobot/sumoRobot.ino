@@ -19,8 +19,8 @@ int op2;            //Reading from right opponent sensor
 int ln1;            //Reading from line sensor
 int ln2;            //Reading from line sensor 2
 
-Servo M1_Throttle; 
-Servo M2_Steering; 
+Servo M1_Steering; 
+Servo M2_Throttle; 
 
 void lineHit(); 
 void DRIVE(int speed1, int speed2); 
@@ -95,8 +95,8 @@ void lineHit()
 
 
 void DRIVE(int speed1, int speed2) {
-  M1_Throttle.writeMicroseconds(speed1);
-  M2_Steering.writeMicroseconds(speed2);
+  M1_Steering.writeMicroseconds(speed1);
+  M2_Throttle.writeMicroseconds(speed2);
 }
 
 
@@ -107,8 +107,8 @@ void Stop() {
 void setMotors() { 
   pinMode(M1, OUTPUT);
   pinMode(M2, OUTPUT);
-  M2_Steering.attach(M2, 1000, 2000); 
-  M1_Throttle.attach(M1, 1000, 2000);
+  M2_Throttle.attach(M2, 1000, 2000); 
+  M1_Steering.attach(M1, 1000, 2000);
 
 }
 
@@ -125,8 +125,8 @@ void armESC() {
   
   delay(10);
   for (int i = 60; i < 80; i++) { 
-    M2_Steering.write(i);
-    M1_Throttle.write(i);
+    M2_Throttle.write(i);
+    M1_Steering.write(i);
     Serial.println(i);
     delay(500); 
   }
