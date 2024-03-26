@@ -18,11 +18,14 @@ int op1;            //Reading from left opponent sensor
 int op2;            //Reading from right opponent sensor 
 int ln1;            //Reading from line sensor
 int ln2;            //Reading from line sensor 2
+volatile bool line_hit; 
 
 Servo M1_Steering; 
 Servo M2_Throttle; 
 
-void lineHit(); 
+void lineHit1();
+void lineHit2(); 
+bool isLineHit();
 void DRIVE(int speed1, int speed2); 
 void Stop(); 
 void setMotors();
@@ -53,55 +56,69 @@ void loop() {
   Serial.println(op2);
   */
 
-  
-  if (op1 && op2)  //Go forwards while opponent seen in both sensors.
+  if(isLineHit())
   {
-    
-    DRIVE(1500,1600);
-  }
-  else if (!op1 && op2)  //Go forwards and slightly right while opponent seen by left sensor
-  {
-    DRIVE(1600,1500);
-  }
-  else if (op1 && !op2)  //Go forwards and slightly left while opponent seen by right sensor
-  {
-    DRIVE(1400,1500);
-  }
-  else //Turn and move forward slightly if the opponent is not seen
-  {
-    DRIVE(1350,1500);
-    delay(500);
+    /*
+    Serial.print("Ln1: "); 
+    Serial.println(ln1);
+    Serial.print("Ln2: "); 
+    Serial.println(ln2);
+    */
+
     Stop();
+    //Drive backwards
+    DRIVE(1500,1300);
     delay(200);
+
+    //Turn around
+    DRIVE(1700, 1500);
+    delay(500);
   }
-  
-  
+  else
+  {
+    if (op1 && op2)  //Go forwards while opponent seen in both sensors.
+    {
+      DRIVE(1500,1600);
+    }
+    else if (!op1 && op2)  //Go forwards and slightly right while opponent seen by left sensor
+    {
+      DRIVE(1600,1500);
+    }
+    else if (op1 && !op2)  //Go forwards and slightly left while opponent seen by right sensor
+    {
+      DRIVE(1400,1500);
+    }
+    else //Turn and move forward slightly if the opponent is not seen
+    {
+      DRIVE(1350,1500);
+      delay(500);
+      Stop();
+      delay(200);
+    }
+  }
 }
 
-//Interrupt when detect line
-void lineHit()
-{
-  Stop();
-  for(int i=0;i<30;i++)
-  {
-    delayMicroseconds(15000);
-  }
-  DRIVE(1000,1000);
-  for(int i=0;i<300;i++)
-  {
-    delayMicroseconds(15000);
-  }
+bool isLineHit() {
+  return line_hit;
 }
 
+//Updates line_hit on an interrupt
+void lineHit1() {
+  line_hit = digitalRead(ln1);
+}
+void lineHit2() {
+  line_hit = digitalRead(ln2);
+}
 
+//1000-Minimum  1500-Neutral  2000-Maximum
 void DRIVE(int speed1, int speed2) {
   M1_Steering.writeMicroseconds(speed1);
   M2_Throttle.writeMicroseconds(speed2);
 }
 
-
 void Stop() {
   DRIVE(1500,1500);
+  delay(150);
 }
 
 void setMotors() { 
@@ -109,7 +126,6 @@ void setMotors() {
   pinMode(M2, OUTPUT);
   M2_Throttle.attach(M2, 1000, 2000); 
   M1_Steering.attach(M1, 1000, 2000);
-
 }
 
 void setSensors() { 
@@ -117,8 +133,8 @@ void setSensors() {
   pinMode(OS2, INPUT);
   pinMode(LS1, INPUT);
   pinMode(LS2, INPUT);
-  //attachInterrupt(digitalPinToInterrupt(LS1), lineHit,RISING);
-  //attachInterrupt(digitalPinToInterrupt(LS2), lineHit,RISING);
+  attachInterrupt(digitalPinToInterrupt(LS1), lineHit1,CHANGE);
+  attachInterrupt(digitalPinToInterrupt(LS2), lineHit2,CHANGE);
 }
 
 void armESC() { 
