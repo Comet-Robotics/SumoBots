@@ -40,7 +40,6 @@ void setup() {
   armESC();
   
   delay(5000);  //Wait for 5 seconds
-
 }
 
 void loop() {
@@ -48,6 +47,7 @@ void loop() {
   ln2 = digitalRead(LS2);
   op1 = digitalRead(OS1);
   op2 = digitalRead(OS2);
+  seen_left = 0;
 
   /*
   Serial.print("OP1: "); 
@@ -80,17 +80,24 @@ void loop() {
     {
       DRIVE(1500,1600);
     }
-    else if (!op1 && op2)  //Go forwards and slightly right while opponent seen by left sensor
+    else if (!op1 && op2)  //Go forwards and slightly right while opponent seen by only left sensor
     {
+      seen_left = 1;
       DRIVE(1600,1500);
     }
-    else if (op1 && !op2)  //Go forwards and slightly left while opponent seen by right sensor
+    else if (op1 && !op2)  //Go forwards and slightly left while opponent seen by only right sensor
     {
+      seen_right = 0;
       DRIVE(1400,1500);
     }
     else //Turn and move forward slightly if the opponent is not seen
     {
-      DRIVE(1350,1500);
+      if(seen_left){
+        DRIVE(1350,1500);
+      }
+      else {
+        DRIVE(1650,1500);
+      }
       delay(500);
       Stop();
       delay(200);
@@ -146,8 +153,7 @@ void armESC() {
     Serial.println(i);
     delay(500); 
   }
-  
-  
+
   //delay(10);
   //LeftMotor.write(68);
   //RightMotor.write(68);
