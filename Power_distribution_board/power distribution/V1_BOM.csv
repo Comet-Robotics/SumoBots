@@ -1,7 +1,0 @@
-Reference,Value,Datasheet,Footprint,Qty,DNP
-A1,nucleo32,,NUCLEO-F031K6:nucleo32,1,
-"J1,J2,J3,J4,J6,J7,J8",Pin headers,~,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,7,
-"J9,J10",XT30 Connector ,~,Connector_AMASS:AMASS_XT30PW-M_1x02_P2.50mm_Horizontal,2,
-SW2,SW_DPST_x2,~,Button_Switch_THT:SW_CK_JS202011CQN_DPDT_Straight,1,
-U1,Buck Converter,,Buck Converter:Buck Converter,1,
-U2,RFM69HCW,https://www.hoperf.com/data/upload/portal/20181127/5bfcb8284d838.pdf,RF_Module:HOPERF_RFM69HW,1,
