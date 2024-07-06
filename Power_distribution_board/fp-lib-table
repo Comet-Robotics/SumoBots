@@ -3,4 +3,5 @@
   (lib (name "Buck Converter")(type "KiCad")(uri "${KIPRJMOD}/Buck Converter.pretty")(options "")(descr ""))
   (lib (name "DW-02-X-X-S-X")(type "KiCad")(uri "C:/Users/ewu43/Documents/KiCad/DW-02-X-X-S-X")(options "")(descr ""))
   (lib (name "SumoV1")(type "KiCad")(uri "${KIPRJMOD}/L101011MS02Q/KiCADv6/footprints.pretty/SumoV1.pretty")(options "")(descr ""))
+  (lib (name "GH36P010001")(type "KiCad")(uri "${KIPRJMOD}/GH36P010001.pretty")(options "")(descr ""))
 )

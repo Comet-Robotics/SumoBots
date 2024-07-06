@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "Sumo Robot Controller ")
-		(date "2024-06-06")
+		(date "2024-07-04")
 		(rev "2")
 	)
 	(lib_symbols
@@ -438,6 +438,125 @@
 					)
 					(fill
 						(type none)
+					)
+				)
+			)
+		)
+		(symbol "Connector:Conn_01x01_Pin"
+			(pin_names
+				(offset 1.016) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_01x01_Pin"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Generic connector, single row, 01x01, script generated"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_locked" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Conn_01x01_Pin_1_1"
+				(polyline
+					(pts
+						(xy 1.27 0) (xy 0.8636 0)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start 0.8636 0.127)
+					(end 0 -0.127)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(pin passive line
+					(at 5.08 0 180)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
 					)
 				)
 			)
@@ -3282,10 +3401,6 @@
 		(uuid "caa657d1-a1c7-4c44-af91-a9d86b654efa")
 	)
 	(no_connect
-		(at 76.2 45.72)
-		(uuid "0b033426-7c40-4631-a24b-989e253b9a80")
-	)
-	(no_connect
 		(at 226.06 88.9)
 		(uuid "193ba523-189f-4e53-b2c5-5adbfa4db1c4")
 	)
@@ -3444,6 +3559,16 @@
 			(type default)
 		)
 		(uuid "1315db2e-fd2d-4c6b-87e6-ed79cb9d7d1f")
+	)
+	(wire
+		(pts
+			(xy 76.2 45.72) (xy 83.82 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "137f5967-0bfe-424e-b36f-52f1b6344687")
 	)
 	(wire
 		(pts
@@ -4413,6 +4538,8 @@
 		(effects
 			(font
 				(size 2 2)
+				(thickness 0.4)
+				(bold yes)
 			)
 		)
 		(uuid "e5e13c7d-1b53-40e6-86e1-bf7788a5f502")
@@ -4495,6 +4622,17 @@
 			(justify left bottom)
 		)
 		(uuid "5b4a44bd-996d-4efb-9e60-df117967f929")
+	)
+	(label "Antenna"
+		(at 76.2 45.72 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5d85ab10-2eca-4be4-950f-1d8893f10e38")
 	)
 	(label "SP1_MISO"
 		(at 40.64 50.8 0)
@@ -4957,6 +5095,70 @@
 			(project "power distribution"
 				(path "/1ade6856-1148-42e0-ba7f-851ea6fd76dc"
 					(reference "J3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x01_Pin")
+		(at 88.9 45.72 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "163f73fd-c7c5-4ea9-8e80-a638273c192f")
+		(property "Reference" "J5"
+			(at 88.265 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Antenna"
+			(at 89.154 48.514 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_Wire:SolderWire-0.1sqmm_1x01_D0.4mm_OD1mm"
+			(at 88.9 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 88.9 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x01, script generated"
+			(at 88.9 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "06920a76-501a-4248-aca9-5ff1752209b5")
+		)
+		(instances
+			(project "power distribution"
+				(path "/1ade6856-1148-42e0-ba7f-851ea6fd76dc"
+					(reference "J5")
 					(unit 1)
 				)
 			)
@@ -7063,7 +7265,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Button_Switch_THT:SW_E-Switch_EG1271_SPDT"
+		(property "Footprint" "GH36P010001:GH36P010001_APM"
 			(at 237.49 57.15 0)
 			(effects
 				(font
