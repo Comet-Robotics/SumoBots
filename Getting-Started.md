@@ -35,5 +35,4 @@ Generally the workflow of Git consists of the following:
   4. `git commit -m "Short and descriptive message"`
   5. `git push` (to send your code to GitHub)
 
-If working on the main repository, please use 'git branch [branch name]' to start a branch and 'git checkout [branch name]' to switch to it. 
-You could use 'git checkout -b [branch name]' as a shorthand. 
+If working on the main repository, please use `git branch [branch name]` to start a branch and `git checkout [branch name]` to switch to it. You could combine these steps with `git checkout -b [branch name]` as a shorthand. 
