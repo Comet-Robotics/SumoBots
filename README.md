@@ -1,2 +1,3 @@
-# UTDSumo
-Program with strategies used to control Comet robotics sumo robot.
+# SumoBots @ UTD
+Main repository for firmware of different robot sumo designs 
+
