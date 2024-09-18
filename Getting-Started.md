@@ -29,11 +29,11 @@ Git/Github provides a way for multiple people to collaborate on one project and 
 
 Generally the workflow of Git consists of the following: 
 
-  1. 'git pull' (pulls the most recent code from the Github repo) 
+  1. `git pull` (pulls the most recent code from the Github repo) 
   2. Write code
-  3. 'git add .' (to add code to the repo)
-  4. 'git commit -m "Short and descriptive message"'
-  5. 'git push' (to send your code to GitHub)
+  3. `git add .` (to add code to the repo)
+  4. `git commit -m "Short and descriptive message"`
+  5. `git push` (to send your code to GitHub)
 
 If working on the main repository, please use 'git branch [branch name]' to start a branch and 'git checkout [branch name]' to switch to it. 
 You could use 'git checkout -b [branch name]' as a shorthand. 
