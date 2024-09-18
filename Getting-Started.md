@@ -18,10 +18,10 @@ recommend VSCode as our code editor of choice. If you do not have VSCode install
 
   3. Choose the board your project is using (e.g. STM32, ESP32, or Arduino board).  
 
-  4. Select the Arduino Framework 
+  4. Select the Arduino Framework
 
 Your project should now include a list of directories along with a `platform.ini` file filled with the settings you chose earlier. 
-If you want to learn more about how to add different configurations to this file you can follow this link to the PlatformIO [Docs](https://docs.platformio.org/en/latest/) 
+If you want to learn more about how to add different configurations to this file you can follow this link to the PlatformIO [Docs](https://docs.platformio.org/en/latest/).
 
 # Git setup 
 
