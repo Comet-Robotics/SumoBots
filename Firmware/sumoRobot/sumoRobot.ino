@@ -113,6 +113,7 @@ bool isLineHit() {
 void lineHit1() {
   line_hit = digitalRead(ln1);
 }
+
 void lineHit2() {
   line_hit = digitalRead(ln2);
 }
